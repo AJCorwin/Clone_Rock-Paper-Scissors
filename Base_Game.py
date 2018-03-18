@@ -1,148 +1,149 @@
 import random
 
-#todo: implement AI vs AI
-#todo: change all variable names to lowercase
-#todo: improve game logic
 
-def Game():
+# todo: implement AI vs AI
+# todo: improve game logic
 
-    ##Starts the game, essentially a basic splash screen
-    PlayerName = input("What is your name player? \n")
-    print("Hello",PlayerName)
+def game():
+    # Starts the game, essentially a basic splash screen
+    player_name = input("What is your name player? \n")
+    print("Hello", player_name)
 
-    PlayerPlaying = input("Do you want to play?\nYes or No\n")
-    if PlayerPlaying.lower() == "play":
+    player_playing = input("Do you want to play?\nYes or No\n")
+    if player_playing.lower() == "play":
         print("You are player 1\n")
-        NumberOfAi = 1
-        GameLogic(NumberOfAi,PlayerName)
+        number_of_ai = 1
+        gamelogic(number_of_ai, player_name)
 
-    if PlayerPlaying.lower() == "yes":
+    if player_playing.lower() == "yes":
         print("You are player 1\n")
-        NumberOfAi = 1
-        GameLogic(NumberOfAi,PlayerName)
+        number_of_ai = 1
+        gamelogic(number_of_ai, player_name)
 
-    elif PlayerPlaying.lower() == "no":
-        NumberOfAi = 2
-        GameLogic(NumberOfAi,PlayerName)
+    elif player_playing.lower() == "no":
+        ai_playing = input("Do you want the AI to play against itself?\nYes or No\n")
+        if ai_playing.lower() == "yes":
+            number_of_ai = 2
+            gamelogic(number_of_ai, player_name)
+        else:
+            print("Goodbye for now")
+    else:
+        print("\nThat is not an acceptable answer, goodbye")
 
-    else: print("\nThat is not an acceptable answer, goodbye")
 
-#Game logic portion of Rock Paper Scissors
-def GameLogic(NumberOfAi,PlayerName):
+# Game logic portion of Rock Paper Scissors
+def gamelogic(number_of_ai, player_name):
+    p1_score = 0
+    p2_score = 0
+    running = "yes"
+    ai_players = number_of_ai
+    player_name = player_name
 
-    P1_Score = 0
-    P2_Score = 0
-    Running = "yes"
-    AIPlayers = NumberOfAi
-    PlayerName = PlayerName
-
-    #While the player wants to continue the game will run
+    # While the player wants to continue the game will run
     while True:
 
-        #this selects the random AI choice
-        AIPicks = ['rock', 'paper', 'scissors']
-        AI1_Choice = random.choice(AIPicks)
+        # this selects the random AI choice
+        ai_picks = ['rock', 'paper', 'scissors']
+        ai1_choice = random.choice(ai_picks)
 
-        #if the player decides to stop the game will quit and print out the final score
-        if Running == "no":
-            print("\nGoodbye", PlayerName,"The final score was\n"
-                  "Player 1:", P1_Score, "Player 2:", P2_Score)
+        # if the player decides to stop the game will quit and print out the final score
+        if running == "no":
+            print("\nGoodbye", player_name, "The final score was\n"
+                                            "Player 1:", p1_score, "Player 2:", p2_score)
             break
 
-        elif Running == "yes":
-            Player_Choice = input("\nPlease pick rock, paper, or scissors ")
+        elif running == "yes":
+            player_choice = input("\nPlease pick rock, paper, or scissors ")
 
-            if Player_Choice.lower() == "rock":
-                Running = "yes"
-                if AI1_Choice == "paper":
-                    print("\nYou picked", Player_Choice, ",the AI picked", AI1_Choice)
+            if player_choice.lower() == "rock":
+                running = "yes"
+                if ai1_choice == "paper":
+                    print("\nYou picked", player_choice, ",the AI picked", ai1_choice)
 
-                    P2_Score = P2_Score + 1
-                    print("\nYou lost this round,",PlayerName,
-                        "\n Your score is", P1_Score, ",Player 2's Score is",P2_Score)
+                    p2_score = p2_score + 1
+                    print("\nYou lost this round,", player_name,
+                          "\n Your score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
 
-                elif AI1_Choice == "scissors":
-                    print("\nYou picked",Player_Choice,",the AI Picked",AI1_Choice)
-                    P1_Score = P1_Score + 1
-                    print("\nYou won this round,", PlayerName,
-                        "\n Your score is", P1_Score, ",Player 2's Score is", P2_Score)
+                elif ai1_choice == "scissors":
+                    print("\nYou picked", player_choice, ",the AI Picked", ai1_choice)
+                    p1_score = p1_score + 1
+                    print("\nYou won this round,", player_name,
+                          "\n Your score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
-                    print(Running)
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
+                    print(running)
 
-                elif AI1_Choice == "rock":
-                    print("\nYou picked",Player_Choice,",the AI Picked",AI1_Choice)
-                    print("\nThis round was a tie!,", PlayerName,
-                    "\n Player 1's score is", P1_Score, ",Player 2's Score is", P2_Score)
+                elif ai1_choice == "rock":
+                    print("\nYou picked", player_choice, ",the AI Picked", ai1_choice)
+                    print("\nThis round was a tie!,", player_name,
+                          "\n Player 1's score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
 
-            elif Player_Choice.lower() == "paper":
-                Running = "yes"
-                if AI1_Choice == "scissors":
-                    print("\nYou picked", Player_Choice, ",the AI picked", AI1_Choice)
+            elif player_choice.lower() == "paper":
+                running = "yes"
+                if ai1_choice == "scissors":
+                    print("\nYou picked", player_choice, ",the AI picked", ai1_choice)
 
-                    P2_Score = P2_Score + 1
-                    print("\nYou lost this round,",PlayerName,
-                        "\n Your score is", P1_Score, ",Player 2's Score is",P2_Score)
+                    p2_score = p2_score + 1
+                    print("\nYou lost this round,", player_name,
+                          "\n Your score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
 
-                elif AI1_Choice == "rock":
-                    print("\nYou picked",Player_Choice,",the AI Picked",AI1_Choice)
-                    P1_Score = P1_Score + 1
-                    print("\nYou won this round,", PlayerName,
-                        "\n Your score is", P1_Score, ",Player 2's Score is", P2_Score)
+                elif ai1_choice == "rock":
+                    print("\nYou picked", player_choice, ",the AI Picked", ai1_choice)
+                    p1_score = p1_score + 1
+                    print("\nYou won this round,", player_name,
+                          "\n Your score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
-                    print(Running)
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
+                    print(running)
 
-                elif AI1_Choice == "paper":
-                    print("\nYou picked",Player_Choice,",the AI Picked",AI1_Choice)
-                    print("\nThis round was a tie!,", PlayerName,
-                    "\n Player 1's score is", P1_Score, ",Player 2's Score is", P2_Score)
+                elif ai1_choice == "paper":
+                    print("\nYou picked", player_choice, ",the AI Picked", ai1_choice)
+                    print("\nThis round was a tie!,", player_name,
+                          "\n Player 1's score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
 
-            elif Player_Choice.lower() == "scissors":
-                Running = "yes"
-                if AI1_Choice == "rock":
-                    print("\nYou picked", Player_Choice, ",the AI picked", AI1_Choice)
+            elif player_choice.lower() == "scissors":
+                running = "yes"
+                if ai1_choice == "rock":
+                    print("\nYou picked", player_choice, ",the AI picked", ai1_choice)
 
-                    P2_Score = P2_Score + 1
-                    print("\nYou lost this round,",PlayerName,
-                        "\n Your score is", P1_Score, ",Player 2's Score is",P2_Score)
+                    p2_score = p2_score + 1
+                    print("\nYou lost this round,", player_name,
+                          "\n Your score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
 
-                elif AI1_Choice == "paper":
-                    print("\nYou picked",Player_Choice,",the AI Picked",AI1_Choice)
-                    P1_Score = P1_Score + 1
-                    print("\nYou won this round,", PlayerName,
-                        "\n Your score is", P1_Score, ",Player 2's Score is", P2_Score)
+                elif ai1_choice == "paper":
+                    print("\nYou picked", player_choice, ",the AI Picked", ai1_choice)
+                    p1_score = p1_score + 1
+                    print("\nYou won this round,", player_name,
+                          "\n Your score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
-                    print(Running)
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
+                    print(running)
 
-                elif AI1_Choice == "scissors":
-                    print("\nYou picked",Player_Choice,",the AI Picked",AI1_Choice)
-                    print("\nThis round was a tie!,", PlayerName,
-                    "\n Player 1's score is", P1_Score, ",Player 2's Score is", P2_Score)
+                elif ai1_choice == "scissors":
+                    print("\nYou picked", player_choice, ",the AI Picked", ai1_choice)
+                    print("\nThis round was a tie!,", player_name,
+                          "\n Player 1's score is", p1_score, ",Player 2's Score is", p2_score)
 
-                    Running = input("\nDo you want to play again?, Yes or No. ")
-                    Running = Running.lower()
-
-Game()
+                    running = input("\nDo you want to play again?, Yes or No. ")
+                    running = running.lower()
 
 
-
+game()
