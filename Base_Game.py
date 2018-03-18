@@ -1,8 +1,8 @@
 import random
 
-
-# todo: implement AI vs AI
 # todo: improve game logic
+# todo: Clean up sentence syntax.
+
 
 def game():
     # Starts the game, essentially a basic splash screen
@@ -12,31 +12,27 @@ def game():
     player_playing = input("Do you want to play?\nYes or No\n")
     if player_playing.lower() == "play":
         print("You are player 1\n")
-        number_of_ai = 1
-        gamelogic(number_of_ai, player_name)
+        player_vs_ai_game_logic(player_name)
 
     if player_playing.lower() == "yes":
         print("You are player 1\n")
-        number_of_ai = 1
-        gamelogic(number_of_ai, player_name)
+        player_vs_ai_game_logic(player_name)
 
     elif player_playing.lower() == "no":
         ai_playing = input("Do you want the AI to play against itself?\nYes or No\n")
         if ai_playing.lower() == "yes":
-            number_of_ai = 2
-            gamelogic(number_of_ai, player_name)
+            ai_vs_ai_game_logic()
         else:
-            print("Goodbye for now")
+            print("\nGoodbye for now")
     else:
         print("\nThat is not an acceptable answer, goodbye")
 
 
-# Game logic portion of Rock Paper Scissors
-def gamelogic(number_of_ai, player_name):
+# Player vs AI game logic portion
+def player_vs_ai_game_logic(player_name):
     p1_score = 0
     p2_score = 0
     running = "yes"
-    ai_players = number_of_ai
     player_name = player_name
 
     # While the player wants to continue the game will run
@@ -146,4 +142,95 @@ def gamelogic(number_of_ai, player_name):
                     running = running.lower()
 
 
+# AI vs AI game logic portion
+def ai_vs_ai_game_logic():
+    gamenum = 0
+    ai1_score = 0
+    ai2_score = 0
+    rounds_to_run = input("\n\nHow many games would you like to simulate? numbers only please")
+    rounds_to_run = int(rounds_to_run)
+
+
+    while True:
+        if gamenum < rounds_to_run:
+            ai_picks = ['rock', 'paper', 'scissors']
+            ai1_choice = random.choice(ai_picks)
+            ai2_choice = random.choice(ai_picks)
+
+            if ai1_choice.lower() == "rock":
+                if ai2_choice == "paper":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+
+                    ai2_score = ai2_score + 1
+                    print("\nAI 1 lost this round,",
+                        "\n AI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+                elif ai2_choice == "scissors":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+                    ai1_score = ai1_score + 1
+                    print("\nAI 1 won this round,",
+                         "\n AI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+                elif ai2_choice == "rock":
+                    print("\nThis round was a tie. AI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+                    print("\nAI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+            elif ai1_choice.lower() == "paper":
+                if ai2_choice == "rock":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+
+                    ai1_score = ai1_score + 1
+                    print("\nAI 2 lost this round,",
+                        "\n AI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+                elif ai2_choice == "scissors":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+                    ai2_score = ai2_score + 1
+                    print("\nAI 2 won this round,",
+                        "\n AI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+                elif ai2_choice == "paper":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+                    print("\nAI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+            elif ai1_choice.lower() == "scissors":
+                if ai2_choice == "paper":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+
+                    ai1_score = ai1_score + 1
+                    print("\nAI 1 lost this round,",
+                        "\n AI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+                elif ai2_choice == "rock":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+                    ai2_score = ai2_score + 1
+                    print("\nAI 2 won this round,",
+                            "\n AI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+                elif ai2_choice == "scissors":
+                    print("\nAI 1 picked", ai1_choice, ",AI 2 picked", ai2_choice)
+                    print("\nAI 1's score is ", ai1_score, ",AI 2's score is", ai2_score)
+
+                    gamenum = gamenum + 1
+
+        elif gamenum == rounds_to_run:
+            print("\n\nThe final score was:\n"
+                  "AI 1's score is", ai1_score, ", AI 2's score is", ai2_score)
+            break
 game()
