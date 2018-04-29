@@ -1,7 +1,5 @@
 import random
 
-
-# todo: improve game logic
 # todo: Clean up sentence syntax.
 
 
