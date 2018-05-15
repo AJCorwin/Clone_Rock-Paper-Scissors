@@ -1,6 +1,6 @@
 import random
 
-# todo: Clean up sentence syntax.
+# todo:Clean up sentence syntax.
 
 
 def game():
